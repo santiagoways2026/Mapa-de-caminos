@@ -1,0 +1,390 @@
+/* ==========================================================================
+   Santiago Ways — Color & Type tokens
+   Single source of truth for brand foundations.
+   Reference: BrandBook oficial + analysis of active creatives (IG/TikTok/YT).
+
+   2026 refresh — los protagonistas siguen siendo los verdes del brandbook
+   (#7AA606 + #668814). Se incorporan dos verdes complementarios extraídos
+   de los creativos de IG que reemplazan a los acentos antiguos:
+     · Verde Lima   #B0F808   sustituye a naranjas/ámbar como acento "punch"
+     · Verde Bosque #184834   sustituye al negro como color de tinta (ink)
+   El sistema queda casi 100% en verdes: protagonista olivo + complementos
+   lima/bosque. Naranjas y negro puro se retiran del uso por defecto.
+   ========================================================================== */
+
+/* -------- Web fonts ------------------------------------------------------- */
+/* Brand primary is Tahoma (system). Per brand notes, when Tahoma is not
+   available (e.g. web/Linux), the canonical substitution order is:
+   1) Montserrat   2) Manrope   3) Poppins
+   We load Montserrat from Google Fonts as the default web substitute and
+   keep the full system fallback chain on every token. */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* ========================================================================
+     BRAND PALETTE
+     ======================================================================== */
+
+  /* ---------- Protagonistas (BrandBook §1.1) ---------------------------- */
+  --sw-green:           #7AA606;   /* Verde Principal — protagonist */
+  --sw-green-dark:      #668814;   /* Verde Oscuro — shadows, hover, depth */
+  --sw-white:           #FFFFFF;
+
+  /* ---------- Complementarios (2026 refresh) ---------------------------- */
+  /* Verde Lima — sustituye al ámbar/naranja como acento de "punch".
+     Úsalo en brushstrokes, badges de oferta, CTAs muy puntuales sobre
+     fondos oscuros (forest o foto). Nunca como protagonista. */
+  --sw-lime:            #B0F808;
+  --sw-lime-soft:       #C5F446;   /* hover claro */
+  --sw-lime-deep:       #9DDB07;   /* pressed */
+
+  /* Verde Bosque — sustituye al negro como color de tinta y como bloque
+     oscuro alternativo (footers, hero oscuro). Más cálido y on-brand que
+     el negro puro; mejor para texto largo en target golden senior. */
+  --sw-forest:          #184834;   /* canonical forest — replaces #1A1A1A */
+  --sw-forest-soft:     #2A6447;
+  --sw-forest-deep:     #0E2C1F;
+
+  /* Cream warm white — opcional como fondo de página, más amable que
+     el blanco puro para sesiones largas. */
+  --sw-cream:           #FAF8F2;
+
+  /* Aliased "ink" ahora apunta a forest, no a negro puro. */
+  --sw-ink:             var(--sw-forest);
+
+  /* ---------- Extended scale — verde olivo (protagonista) -------------- */
+  --sw-green-50:        #F4F8E6;   /* lightest wash — alert backgrounds, hovers */
+  --sw-green-100:       #E6F0CC;
+  --sw-green-200:       #CDE199;
+  --sw-green-300:       #B0CC66;
+  --sw-green-400:       #94B833;
+  --sw-green-500:       #7AA606;   /* = --sw-green (canonical) */
+  --sw-green-600:       #668814;   /* = --sw-green-dark */
+  --sw-green-700:       #4F6B0F;
+  --sw-green-800:       #38500B;
+  --sw-green-900:       #243607;
+
+  /* ---------- Extended scale — verde lima (complementario punch) ------- */
+  --sw-lime-50:         #F5FDE0;
+  --sw-lime-100:        #ECFBC2;
+  --sw-lime-200:        #D7F784;
+  --sw-lime-300:        #C5F446;
+  --sw-lime-400:        #B0F808;   /* = --sw-lime (canonical) */
+  --sw-lime-500:        #9DDB07;   /* = --sw-lime-deep */
+  --sw-lime-600:        #7DAE05;
+  --sw-lime-700:        #5E8404;
+  --sw-lime-800:        #3F5902;
+  --sw-lime-900:        #1F2C01;
+
+  /* ---------- Extended scale — verde bosque (complementario tinta) ----- */
+  --sw-forest-50:       #E8F0EC;
+  --sw-forest-100:      #CDDFD5;
+  --sw-forest-200:      #9BBFAA;
+  --sw-forest-300:      #68A07F;
+  --sw-forest-400:      #408561;
+  --sw-forest-500:      #2A6447;   /* = --sw-forest-soft */
+  --sw-forest-600:      #184834;   /* = --sw-forest (canonical) */
+  --sw-forest-700:      #133A2A;
+  --sw-forest-800:      #0E2C1F;   /* = --sw-forest-deep */
+  --sw-forest-900:      #081B13;
+
+  /* ---------- Neutral scale — warm-leaning, conviven con el verde ------ */
+  --sw-neutral-0:       #FFFFFF;
+  --sw-neutral-50:      #FAF8F2;   /* = --sw-cream — alt page bg */
+  --sw-neutral-100:     #F3F0E7;
+  --sw-neutral-200:     #E6E2D6;   /* hairlines, dividers */
+  --sw-neutral-300:     #CFCABB;
+  --sw-neutral-400:     #A8A498;
+  --sw-neutral-500:     #76736A;   /* secondary text */
+  --sw-neutral-600:     #4F4D47;
+  --sw-neutral-700:     #353330;
+  --sw-neutral-800:     #22211F;
+  --sw-neutral-900:     #15140F;
+
+  /* ---------- Acentos no-verdes (uso muy puntual) ---------------------- */
+  /* El ámbar y los rojos sobreviven sólo para casos funcionales claros
+     (errores, warnings de packing-list). Para acento de "punch" prefiere
+     siempre --sw-lime. */
+  --sw-amber:           #F4C530;   /* legacy CTA — uso ocasional sobre verde */
+  --sw-amber-dark:      #C99A12;
+  --sw-error:           #C2410C;   /* warnings · "lo que no llevar" */
+  --sw-success:         var(--sw-green-dark);
+  --sw-info:            #2563EB;   /* mensajería de sistema, raro */
+
+  /* ========================================================================
+     SEMANTIC TOKENS — usa éstos en componentes, no los raw brand vars.
+     ======================================================================== */
+
+  /* Foreground (text) ----------------------------------------------------- */
+  --fg-1:               var(--sw-forest);        /* primary text — forest, NOT black */
+  --fg-2:               var(--sw-forest-soft);   /* secondary text */
+  --fg-3:               var(--sw-neutral-500);   /* muted text */
+  --fg-inverse:         var(--sw-white);         /* text on green/forest blocks */
+  --fg-on-lime:         var(--sw-forest);        /* text on lima — siempre forest */
+  --fg-brand:           var(--sw-green);         /* links, brand emphasis */
+  --fg-brand-strong:    var(--sw-green-dark);    /* hover for brand text */
+
+  /* Background ------------------------------------------------------------ */
+  --bg-1:               var(--sw-white);         /* primary page surface */
+  --bg-2:               var(--sw-cream);         /* warm alt surface */
+  --bg-3:               var(--sw-neutral-100);   /* recessed surface */
+  --bg-brand:           var(--sw-green);         /* signature green blocks */
+  --bg-brand-strong:    var(--sw-green-dark);    /* hover / pressed on brand */
+  --bg-ink:             var(--sw-forest);        /* dark blocks · footers (was #1A1A1A) */
+  --bg-ink-strong:      var(--sw-forest-deep);
+  --bg-accent:          var(--sw-lime);          /* lima "punch" blocks */
+  --bg-accent-strong:   var(--sw-lime-deep);
+  --bg-wash:            var(--sw-green-50);      /* tinted highlight panel */
+  --bg-wash-lime:       var(--sw-lime-50);
+
+  /* Borders --------------------------------------------------------------- */
+  --border-1:           var(--sw-neutral-200);   /* default hairline */
+  --border-2:           var(--sw-neutral-300);   /* stronger hairline / inputs */
+  --border-brand:       var(--sw-green);
+  --border-accent:      var(--sw-lime);
+
+  /* ========================================================================
+     TYPE SYSTEM
+     ======================================================================== */
+
+  /* Primary brand font. Order matches "Tahoma → Montserrat → Manrope → Poppins". */
+  --font-sans: "Montserrat", "Manrope", "Poppins", Tahoma, "Helvetica Neue",
+               Arial, system-ui, -apple-system, sans-serif;
+
+  /* Tahoma-first stack for environments where Tahoma is installed (Windows,
+     legacy desktop email, PDF). Use sparingly — Montserrat reads better on web. */
+  --font-tahoma: Tahoma, "Montserrat", "Manrope", "Poppins", Geneva,
+                 "Helvetica Neue", Arial, sans-serif;
+
+  --font-mono: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* Type scale — modular, generous. Base 16px / 1.5 line-height. */
+  --fs-xs:              0.75rem;   /* 12px */
+  --fs-sm:              0.875rem;  /* 14px */
+  --fs-base:            1rem;      /* 16px */
+  --fs-md:              1.125rem;  /* 18px */
+  --fs-lg:              1.375rem;  /* 22px */
+  --fs-xl:              1.75rem;   /* 28px */
+  --fs-2xl:             2.25rem;   /* 36px */
+  --fs-3xl:             3rem;      /* 48px */
+  --fs-4xl:             4rem;      /* 64px */
+  --fs-5xl:             5.5rem;    /* 88px */
+
+  --lh-tight:           1.1;     /* @kind font */
+  --lh-snug:            1.25;    /* @kind font */
+  --lh-normal:          1.5;     /* @kind font */
+  --lh-relaxed:         1.7;     /* @kind font */
+
+  --tracking-tight:     -0.02em; /* @kind font */
+  --tracking-normal:    0;       /* @kind font */
+  --tracking-wide:      0.02em;  /* @kind font */
+  --tracking-loose:     0.08em;  /* @kind font */
+
+  --fw-regular:         400;     /* @kind font */
+  --fw-medium:          500;     /* @kind font */
+  --fw-semibold:        600;     /* @kind font */
+  --fw-bold:            700;     /* @kind font */
+  --fw-extrabold:       800;     /* @kind font */
+  --fw-black:           900;     /* @kind font */
+
+  /* ========================================================================
+     SPACING (8pt grid)
+     ======================================================================== */
+  --space-0:            0;
+  --space-1:            0.25rem;
+  --space-2:            0.5rem;
+  --space-3:            0.75rem;
+  --space-4:            1rem;
+  --space-5:            1.5rem;
+  --space-6:            2rem;
+  --space-7:            3rem;
+  --space-8:            4rem;
+  --space-9:            6rem;
+  --space-10:           8rem;
+
+  /* ========================================================================
+     RADII
+     ======================================================================== */
+  --radius-xs:          2px;
+  --radius-sm:          4px;
+  --radius-md:          8px;
+  --radius-lg:          12px;
+  --radius-xl:          20px;
+  --radius-2xl:         28px;
+  --radius-pill:        999px;
+
+  /* ========================================================================
+     SHADOWS / elevation — tinted toward forest, not pure black.
+     ======================================================================== */
+  --shadow-1:           0 1px 2px rgba(24, 72, 52, 0.08),
+                        0 1px 1px rgba(24, 72, 52, 0.05);
+  --shadow-2:           0 4px 12px rgba(24, 72, 52, 0.10),
+                        0 1px 2px rgba(24, 72, 52, 0.05);
+  --shadow-3:           0 12px 28px rgba(24, 72, 52, 0.14),
+                        0 2px 6px rgba(24, 72, 52, 0.06);
+  --shadow-brand:       0 12px 24px rgba(122, 166, 6, 0.28);
+  --shadow-lime:        0 12px 24px rgba(176, 248, 8, 0.30);
+
+  /* ========================================================================
+     MOTION
+     ======================================================================== */
+  --ease-out:           cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-in-out:        cubic-bezier(0.65, 0, 0.35, 1);    /* @kind other */
+  --dur-fast:           120ms;  /* @kind other */
+  --dur-base:           220ms;  /* @kind other */
+  --dur-slow:           420ms;  /* @kind other */
+
+  /* ========================================================================
+     LAYOUT
+     ======================================================================== */
+  --container-narrow:   720px;
+  --container-base:     1080px;
+  --container-wide:     1280px;
+}
+
+/* ==========================================================================
+   Element-level semantic styles. Body inherits forest-on-white por defecto —
+   forest sustituye al negro puro como tinta, lo demás se mantiene fiel al
+   brandbook.
+   ========================================================================== */
+html, body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: var(--bg-1);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings — bold, slightly tight. Use UPPERCASE + tracking-loose for the
+   IG-feed "impact" titles documented in the manual. */
+h1, .h1 {
+  font-size: var(--fs-4xl);
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-extrabold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+}
+h2, .h2 {
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-tight);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-5);
+  text-wrap: balance;
+}
+h3, .h3 {
+  font-size: var(--fs-2xl);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-4);
+}
+h4, .h4 {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semibold);
+  margin: 0 0 var(--space-3);
+}
+h5, .h5 {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+  font-weight: var(--fw-semibold);
+  margin: 0 0 var(--space-3);
+}
+h6, .h6 {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-loose);
+  color: var(--fg-2);
+  margin: 0 0 var(--space-2);
+}
+
+/* The signature "impact" headline pattern — UPPERCASE, white on green block. */
+.display, .impact {
+  font-size: var(--fs-5xl);
+  line-height: 0.95;
+  font-weight: var(--fw-black);
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+/* Eyebrow / kicker — small uppercase label sitting above a headline. */
+.eyebrow {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-loose);
+  color: var(--fg-brand);
+}
+
+p, .body {
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  margin: 0 0 var(--space-4);
+  color: var(--fg-1);
+  text-wrap: pretty;
+}
+.lead {
+  font-size: var(--fs-md);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+}
+.small, small {
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+}
+.caption {
+  font-size: var(--fs-xs);
+  color: var(--fg-3);
+  letter-spacing: var(--tracking-wide);
+}
+
+a {
+  color: var(--fg-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--fg-brand-strong); }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--border-1);
+  margin: var(--space-6) 0;
+}
+
+/* Common brand utilities ---------------------------------------------------- */
+/* Verde olivo — protagonista. */
+.bg-brand     { background: var(--bg-brand);        color: var(--fg-inverse); }
+.bg-brand-dk  { background: var(--bg-brand-strong); color: var(--fg-inverse); }
+
+/* Bosque — sustituye a "ink" para bloques oscuros (footers, headers oscuros). */
+.bg-ink       { background: var(--bg-ink);        color: var(--fg-inverse); }
+.bg-ink-dk    { background: var(--bg-ink-strong); color: var(--fg-inverse); }
+
+/* Lima — acento de punch (CTAs muy puntuales, badges de oferta). Texto siempre forest. */
+.bg-accent    { background: var(--bg-accent);        color: var(--fg-on-lime); }
+.bg-accent-dk { background: var(--bg-accent-strong); color: var(--fg-on-lime); }
+
+/* Washes — paneles de callout suaves. */
+.bg-wash      { background: var(--bg-wash); }
+.bg-wash-lime { background: var(--bg-wash-lime); }
+
+.text-brand    { color: var(--fg-brand); }
+.text-inverse  { color: var(--fg-inverse); }
+.text-accent   { color: var(--sw-lime-700); }   /* lima legible — nunca el #B0F808 puro */
+.text-on-lime  { color: var(--fg-on-lime); }
